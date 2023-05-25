@@ -25,24 +25,8 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Student {
-	@Column(name = "Ids")
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Setter(value = AccessLevel.NONE)
-	private long ids;
+public class Student extends Person{
 	
-	@Column(name = "Name")
-	@NotNull
-	@Size(min = 3, max = 20)
-	@Pattern(regexp = "[A-Z]{1}[a-z]+")
-	private String name;
-	
-	@Column(name = "Surname")
-	@NotNull
-	@Size(min = 3, max = 20)
-	@Pattern(regexp = "[A-Z]{1}[a-z]+")
-	private String surname;
 
 	@OneToMany(mappedBy = "student")//linked with other class variable name
 	@ToString.Exclude
@@ -50,8 +34,7 @@ public class Student {
 
 	public Student(@NotNull @Size(min = 3, max = 20) @Pattern(regexp = "[A-Z]{1}[a-z]+") String name,
 			@NotNull @Size(min = 3, max = 20) @Pattern(regexp = "[A-Z]{1}[a-z]+") String surname) {
-		this.name = name;
-		this.surname = surname;
+		super(name, surname);
 	}
 	
 	
