@@ -56,7 +56,7 @@ public class FilteringServiceImpl implements IFilteringService{
 	@Override
 	public ArrayList<Grade> retrieveAllGradesByStudentId(long id) throws Exception {
 		if(id > 0) {
-			ArrayList<Grade> filteredResults = gradeRepo.findByStudentIds(id);
+			ArrayList<Grade> filteredResults = gradeRepo.findByStudentIdp(id);
 			return filteredResults;
 		}
 		else
@@ -68,7 +68,7 @@ public class FilteringServiceImpl implements IFilteringService{
 	@Override
 	public ArrayList<Course> retrieveAllCoursesByStudentId(long id) throws Exception {
 		if(id > 0) {
-			ArrayList<Course> filteredResults = courseRepo.findByGradesStudentIds(id);
+			ArrayList<Course> filteredResults = courseRepo.findByGradesStudentIdp(id);
 			return filteredResults;
 		}
 		else
