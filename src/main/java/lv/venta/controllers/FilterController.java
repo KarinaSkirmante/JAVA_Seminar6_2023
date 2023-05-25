@@ -35,5 +35,18 @@ public class FilterController {
 	
 	
 	//TODO add this for Courses
+	@GetMapping("/info/showAllCourses")//localhost:8080/info/showAllCourses
+	public String getAllCourseFunc(Model model) {
+		model.addAttribute("courses", filterService.retrieveAllCourses());
+		return "all-courses-page";//will show all-courses-page.htm
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
