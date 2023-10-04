@@ -14,7 +14,7 @@ public interface ICRUDCourseService {
 		ArrayList<Course> retrieveAllCourses();
 
 		//retrieve one by id
-		Course retrieveOneCourseById(int id) throws Exception;
+		Course retrieveOneCourseById(long id) throws Exception;
 		
 		//retrieve one by title
 		ArrayList<Course> retrieveAllCoursesByTitle(String title) throws Exception;
@@ -23,8 +23,8 @@ public interface ICRUDCourseService {
 		Course insertCourseByParams(String title, int creditpoints, ArrayList<Professor> professors);
 		
 		//update
-		Course updateCourseByParams(int id, String title, int creditpoints, ArrayList<Professor> professors) throws Exception;
+		Course updateCourseByParams(long id, String title, int creditpoints, ArrayList<Professor> professors) throws Exception;
 		
 		//delete
-		void deleteCourseById(int id) throws Exception;
+		void deleteCourseById(long id) throws Exception;
 }
