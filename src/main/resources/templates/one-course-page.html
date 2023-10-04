@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<h1> Kurss</h1>
+	<p th:text="${course.getIdc()}" />
+	<p th:text="${course.getTitle()}" />
+	<p th:text="${course.getCreditpoints()}" />
+	<td>
+		<ul>
+			<li th:each="prof : ${course.getProfessors()}">
+				<span th:text="${prof.getName()}"></span>
+				<span th:text="${prof.getSurname()}"></span>
+				<span th:text="${prof.getDegree()}"></span>
+			</li>
+		</ul>
+	</td>
+</body>
+
+</html>

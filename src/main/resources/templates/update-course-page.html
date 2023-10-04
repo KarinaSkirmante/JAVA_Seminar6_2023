@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<form action="#"  th:action="@{/course/update/__${id}__}"  th:object="${course}"   method="post">
+		<table>
+			<tr>
+				<td>Kursa nosaukums:</td>
+				<td><input type="text" th:field="*{title}"   />  </td>
+				<td th:if="${#fields.hasErrors('title')}" th:errors="*{title}"> </td>
+			</tr>
+			
+			<tr>
+				<td>Kursa kredītpunkti:</td>
+				<td><input type="text" th:field="*{creditpoints}"   />  </td>
+				<td th:if="${#fields.hasErrors('creditpoints')}" th:errors="*{creditpoints}"> </td>
+			</tr>
+			
+						
+		
+			<tr>
+				<td> <button type="submit"> Saglabāt kursu </button> </td>
+			</tr>	
+		</table>
+		
+		
+	</form>
+	
+	
+</html>

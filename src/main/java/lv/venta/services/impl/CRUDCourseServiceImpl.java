@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lv.venta.models.Course;
+import lv.venta.models.Grade;
 import lv.venta.models.Professor;
 import lv.venta.repos.ICourseRepo;
+import lv.venta.repos.IGradeRepo;
+import lv.venta.repos.IProfessorRepo;
 import lv.venta.services.ICRUDCourseService;
 
 @Service
@@ -16,6 +19,11 @@ public class CRUDCourseServiceImpl implements ICRUDCourseService{
 	@Autowired
 	private ICourseRepo courseRepo;
 	
+	@Autowired
+	private IProfessorRepo profRepo;
+	
+	@Autowired
+	private IGradeRepo gradeRepo;
 
 	@Override
 	public ArrayList<Course> retrieveAllCourses() {
@@ -62,8 +70,23 @@ public class CRUDCourseServiceImpl implements ICRUDCourseService{
 
 	@Override
 	public void deleteCourseById(long id) throws Exception {
-		if(courseRepo.existsById(id))
+		if(courseRepo.existsById(id)) {
+			Course removeCourse = courseRepo.findById(id).get();
+			ArrayList<Professor> profs= profRepo.findAllByCoursesIdc(id);
+			for(Professor prof: profs) {
+				prof.removeCourse(removeCourse);
+				profRepo.save(prof);
+			}
+			
+			
+			
+			ArrayList<Grade> grade= gradeRepo.findByCourseIdc(id);
+			for(Grade gr: grade) {
+				gr.setCourse(null);
+				gradeRepo.save(gr);
+			}
 			courseRepo.deleteById(id);
+		}
 		else
 			throw new Exception("Incorrect id");
 		

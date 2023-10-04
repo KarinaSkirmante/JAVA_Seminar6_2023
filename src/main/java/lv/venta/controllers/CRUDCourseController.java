@@ -29,7 +29,7 @@ public class CRUDCourseController {
 	@GetMapping("/all") //localhost:8080/course/all
 	public String getAllCourseGetFunc(Model model) {
 		model.addAttribute("courses", courseService.retrieveAllCourses());
-		return "all-course-page";
+		return "all-courses-page";
 	}
 	
 	
@@ -47,7 +47,7 @@ public class CRUDCourseController {
 	@GetMapping("/insert") // localhost:8080/course/insert
 	public String insertCourseFunc(Course course) 
 	{
-		return "insert-page";
+		return "insert-course-page";
 	}
 
 
@@ -59,7 +59,7 @@ public class CRUDCourseController {
 			courseService.insertCourseByParams(course.getTitle(), course.getCreditpoints(), (ArrayList<Professor>)course.getProfessors());
 			return "redirect:/course/all";
 		} else {
-			return "insert-page";
+			return "insert-course-page";
 		}
 
 	}
@@ -69,7 +69,7 @@ public class CRUDCourseController {
 	public String updateCourseByIdGetFunc(@PathVariable("id") int id, Model model) {
 		try {
 			model.addAttribute("course", courseService.retrieveOneCourseById(id));
-			return "update-page";
+			return "update-course-page";
 		} catch (Exception e) {
 			return "error-page";
 		}
@@ -85,12 +85,12 @@ public class CRUDCourseController {
 			try {
 				
 				Course temp = courseService.updateCourseByParams(id, course.getTitle(), course.getCreditpoints(), (ArrayList<Professor>)course.getProfessors());
-				return "redirect:/course/" + temp.getIdc();
+				return "redirect:/course/all/" + temp.getIdc();
 			} catch (Exception e) {
 				return "redirect:/course/error";
 			}
 		} else {
-			return "update-page";
+			return "update-course-page";
 		}
 
 	}
