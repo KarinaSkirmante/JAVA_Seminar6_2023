@@ -31,7 +31,6 @@ public class CRUDGradeController {
 	
 	@PostMapping("/insert")//localhost:8080/grade/insert
 	public ResponseEntity<ArrayList<GradeDTO>> insertNewGrade(@RequestBody @Valid GradeDTO gradeDTO) {
-		//1. caur servisu jāsagalbā
 		try {
 			gradeService.insertGradeByGradeDTO(gradeDTO);
 			ArrayList<GradeDTO> data = gradeService.retrieveAllDataForGrades();
@@ -40,12 +39,7 @@ public class CRUDGradeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new ResponseEntity<ArrayList<GradeDTO>>(HttpStatusCode.valueOf(404));//nav atrasts kods, jo students via kurss neeksistē
-		
-		//2. jaaizdomā ko atgriezts jo šis funkcijas un atgriezt
-		//3. pielietot validāciju anotācijas priekš GradeDTO klases
-		//4. @Valid anotāciju pievienot uzreiz aiz @RequastBody
-		
+		return new ResponseEntity<ArrayList<GradeDTO>>(HttpStatusCode.valueOf(404));//nav atrasts kods, jo students via kurss neeksistē		
 	}
 
 }
